@@ -16,8 +16,8 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
-    setError(''); // Clear previous errors
+    setLoading(true);
+    setError('');
 
     const userData = { username, password };
     console.log('userData ==>', userData);
@@ -26,20 +26,19 @@ const Login = () => {
       const response = await axios.post('http://127.0.0.1:8000/api/v1/token/', userData);
       console.log('Response: ', response.data);
 
-      // Store tokens in localStorage
       localStorage.setItem('accessToken', response.data.access);
       localStorage.setItem('refreshToken', response.data.refresh);
 
       console.log('Login successful');
       setIsLoggedIn(true);
       setSuccess(true);
-      navigate('/');
+      navigate('/dashboard');
     } catch (error) {
       console.error('Invalid credentials');
       setSuccess(false);
       setError('Invalid credentials');
     } finally {
-      setLoading(false); // Stop loading after attempt
+      setLoading(false);
     }
   };
 
@@ -47,7 +46,7 @@ const Login = () => {
     <>
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-md-6 bg-dark p-5 rounded">
+          <div className="col-md-6 p-5 rounded" style={{ backgroundColor: '#2c2c2c' }}>
             <h3 className="text-light text-center mb-4">Login to your account</h3>
             <form onSubmit={handleLogin}>
               <div className="mb-3">
@@ -75,11 +74,11 @@ const Login = () => {
               {error && <div className="text-danger">{error}</div>}
 
               {loading ? (
-                <button type="submit" className="btn btn-info w-100" disabled>
-                  <FontAwesomeIcon icon={faSpinner} spin /> Logging in...
+                <button type="submit" className="btn btn-info d-block mx-auto" disabled>
+                  <FontAwesomeIcon icon={faSpinner} spin /> Please Wait...
                 </button>
               ) : (
-                <button type="submit" className="btn btn-info w-100">
+                <button type="submit" className="btn btn-info d-block mx-auto">
                   Login
                 </button>
               )}

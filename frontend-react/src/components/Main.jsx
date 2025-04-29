@@ -14,8 +14,8 @@ const Main = () => {
             The frontend is built using React for a dynamic and responsive user interface, while Django serves as the backend framework handling APIs, user authentication, and database management. 
             A trained machine learning model predicts future stock prices based on historical data, technical indicators, and news sentiment analysis.
           </p>
-          <Button text="Login" className="btn-outline-success" url="/login" />
-        </div>
+          <Button text="Explore Now" className="btn-outline-success" url="/dashboard" />
+  </div>
       </div>
     </>
   )
